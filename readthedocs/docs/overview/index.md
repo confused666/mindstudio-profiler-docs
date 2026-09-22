@@ -1,4 +1,4 @@
-﻿---
+---
 hide:
   - navigation
   - toc
@@ -457,6 +457,12 @@ MindStudio 提供多种性能数据采集能力，可覆盖 AI 框架层、CANN 
 </style>
 
 <div class="grid cards" markdown>
+
+-   **[新特性](../whats-new/)**
+
+    ---
+
+    汇总各工具最新版本的新增特性，掌握工具链最新动态。
 
 -   **[msProf](../msprof/)**
 

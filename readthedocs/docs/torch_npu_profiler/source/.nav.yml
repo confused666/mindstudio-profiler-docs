@@ -1,5 +1,5 @@
 collapse_single_pages: true
 nav:
-  - getting_started
-  - user_guide
-  - advanced_features
+  - 快速入门: getting_started
+  - 使用指南: user_guide
+  - 高级特性: advanced_features

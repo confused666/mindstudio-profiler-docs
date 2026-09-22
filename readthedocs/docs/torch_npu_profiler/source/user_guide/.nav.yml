@@ -1,8 +1,8 @@
 collapse_single_pages: true
 nav:
   - index.md
-  - profile_api.md
-  - dynamic_profile.md
-  - offline_analyse.md
-  - result_files.md
-  - schedule_reference.md
+  - profile 接口采集: profile_api.md
+  - 动态采集: dynamic_profile.md
+  - 离线解析: offline_analyse.md
+  - 性能数据交付件: result_files.md
+  - schedule 参考: schedule_reference.md

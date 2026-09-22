@@ -1,9 +1,0 @@
-title: MindStudio Insight
-nav:
-  - MindStudio Insight: index.md
-  - 推荐阅读:
-    - source/user_guide/overview.md
-    - source/user_guide/mindstudio_insight_install_guide.md
-    - source/user_guide/quick_start/system_tuning_quick_start.md
-    - source/user_guide/basic_operations.md
-  - 文档目录: source

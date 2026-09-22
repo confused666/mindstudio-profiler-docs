@@ -1,8 +1,0 @@
-title: msAgent
-nav:
-  - msAgent: index.md
-  - 推荐阅读:
-    - source/agents/Hermes.md
-    - source/agents/Minos.md
-    - source/configuration-and-extension.md
-  - 文档目录: source

@@ -1,6 +1,7 @@
 nav:
   - Home: index.md
   - Overview: overview
+  - 新特性: whats-new
   - msProf: msprof
   - PyTorch Profiler: torch_npu_profiler
   - MSPTI: mspti

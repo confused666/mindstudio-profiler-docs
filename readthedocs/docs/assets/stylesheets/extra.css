@@ -94,6 +94,8 @@
 .md-typeset .grid.cards > ul > li,
 .md-typeset .grid.cards > ol > li {
   border-radius: 1rem;
+  /* color-mix 在旧浏览器上不被支持，整条 border 声明会失效，此处给出静态回退色。 */
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
@@ -109,6 +111,8 @@
 
 [data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li,
 [data-md-color-scheme="slate"] .md-typeset .grid.cards > ol > li {
+  /* 同上：不支持 color-mix 时回退为半透明叠加色，避免深色模式卡片沿用上面的白色背景。 */
+  background: rgba(255, 255, 255, 0.04);
   background: color-mix(in srgb, var(--md-default-bg-color) 92%, var(--md-default-fg-color) 8%);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 }

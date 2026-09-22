@@ -1,6 +1,6 @@
 site_name: MindStudio Profiler Tools
 site_description: Ascend performance tooling portal built from MSTT submodules.
-site_url: https://mstt.readthedocs.io/zh-cn/latest/
+site_url: https://mindstudio-profiler-docs.readthedocs.io/zh-cn/latest/
 repo_url: https://gitcode.com/Ascend/mstt
 repo_name: Ascend/mstt
 edit_uri: ""
@@ -10,6 +10,7 @@ use_directory_urls: true
 
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   logo: assets/logos/mindstudio.jpg
   favicon: assets/logos/mindstudio.jpg
@@ -53,8 +54,162 @@ theme:
 extra_css:
   - assets/stylesheets/extra.css
 
+hooks:
+  - hooks.py
+
 plugins:
   - awesome-nav
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      languages:
+        - locale: zh
+          name: 简体中文
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          # 英文版侧边栏的固定标签与页面条目标签翻译（文档 H1 本身无英文源，标签在此统一映射）
+          nav_translations:
+            新特性: What's New
+            推荐阅读: Recommended Reading
+            文档目录: Documentation
+            总体概览: Overview
+            概述: Overview
+            简介: Introduction
+            总体说明: General Description
+            基本操作: Basic Operations
+            解析工具说明: Parsing Instructions
+            性能数据文件参考: Profile Data File Reference
+            DB格式性能数据文件参考: DB-Format Profile Data File Reference
+            扩展功能: Extended Features
+            样例指南: Samples Guide
+            msPTI工具样例指南: msPTI Samples Guide
+            NPU 监控: NPU Monitoring
+            MindSpore 适配: MindSpore Adaptation
+            MindSpore框架下msMonitor的使用方法: Using msMonitor with MindSpore
+            专家建议: Expert Advice
+            性能对比: Performance Comparison
+            性能比对: Performance Comparison
+            集群分析: Cluster Analysis
+            配置与扩展: Configuration & Extension
+            快速入门: Getting Started
+            快速上手: Quick Start
+            安装指南: Installation Guide
+            用户指南: User Guide
+            使用指南: User Guide
+            最佳实践: Best Practices
+            高级特性: Advanced Features
+            开发者指南: Developer Guide
+            Agent 指南: Agent Guide
+            参考: Reference
+            设计说明: Design
+            使用示例: Examples
+            支持与反馈: Support & Feedback
+            版本发布说明: Release Notes
+            环境变量信息采集: Environment Variable Collection
+            自定义元数据: Custom Metadata
+            自定义分析规则开发指导: Custom Analysis Rule Development Guide
+            MSTX 用户自定义打点: MSTX Custom Instrumentation
+            Profiler 子线程采集: Profiler Sub-Thread Collection
+            Profiler 性能调优: Profiler Performance Tuning
+            profile 接口采集: profile API Collection
+            动态采集: Dynamic Collection
+            离线解析: Offline Parsing
+            性能数据交付件: Profiling Data Deliverables
+            schedule 参考: Schedule Reference
+            msProf解析工具: msProf Parsing Tool
+            msPTI 用户指南: msPTI User Guide
+            msPTI 最佳实践与典型案例: msPTI Best Practices & Typical Cases
+            Activity API 使用指南: Activity API Guide
+            Callback API 使用指南: Callback API Guide
+            Python API 使用指南: Python API Guide
+            ResNet50推理模型性能分析: ResNet50 Inference Performance Analysis
+            代码高耗时函数段优化: High-Latency Code Section Optimization
+            通信地址不对齐导致性能下降: Performance Drop from Communication Address Misalignment
+            CPU Cache Miss资源冲突与受限: CPU Cache Miss Conflicts & Contention
+            CPU 线程频繁切换: Frequent CPU Thread Switching
+            内核进程频繁切换: Frequent Kernel Thread Switching
+            下发性能不及预期: Dispatch Performance Below Expectations
+            GIL锁抢占问题分析: GIL Lock Preemption Analysis
+            IRQ中断问题分析: IRQ Interruption Analysis
+            内存碎片: Memory Fragmentation
+            内存泄漏: Memory Leak
+            算子编译高耗时: High Operator Compilation Latency
+            Pthread线程锁等待: Pthread Lock Waiting
+            Python GC回收高耗时: High Python GC Latency
+            同步接口频繁调用: Frequent Synchronous API Calls
+            系统调用高耗时函数: High-Latency Syscall Functions
+            NPU 和 GPU 性能数据拆解比对: NPU vs GPU Profiling Data Comparison
+            集群算子耗时分析: Cluster Operator Latency Analysis
+            集群算子信息导出: Cluster Operator Data Export
+            集群算子掩盖线性度分析: Cluster Operator Masking Linearity Analysis
+            集群性能数据细粒度比对: Fine-Grained Cluster Profiling Data Comparison
+            集群性能数据细粒度拆解: Fine-Grained Cluster Profiling Data Breakdown
+            通信瓶颈分析: Communication Bottleneck Analysis
+            性能数据模型结构拆解: Profiling Data Model Structure Breakdown
+            空闲时间原因分析: Idle Time Root Cause Analysis
+            算子 MFU 分析: Operator MFU Analysis
+            pp流水图数据分析: Pipeline (PP) Chart Data Analysis
+            解析结果和cluster_analysis.db交付件表结构说明: Parsing Results and cluster_analysis.db Schema
+            MindStudio Insight基础操作: MindStudio Insight Basic Operations
+            MindStudio Insight内存调优: MindStudio Insight Memory Tuning
+            MindStudio Insight算子调优: MindStudio Insight Operator Tuning
+            MindStudio Insight系统调优: MindStudio Insight System Tuning
+            MindStudio Insight服务化调优: MindStudio Insight Service-Based Tuning
+            MindStudio Insight NUMA分析: MindStudio Insight NUMA Analysis
+            整体界面介绍: UI Overview
+            Timeline泳道介绍: Timeline Lanes Overview
+            快捷键说明: Keyboard Shortcuts
+            jupyterlab安装指南: JupyterLab Installation Guide
+            基于 MindStudio Insight 定位集群快慢卡问题: Locating Cluster Slow-Rank Issues with MindStudio Insight
+            基于 MindStudio Insight 分析 Cube-Vector 融合算子性能: Analyzing Cube-Vector Fused Operators with MindStudio Insight
+            基于 Linux Kernel ftrace 的 Host Bound 问题分析: Host Bound Analysis with Linux Kernel ftrace
+            基于 PyTorch Snapshot 定位 ResNet50 训练内存泄漏: Locating ResNet50 Training Memory Leaks with PyTorch Snapshot
+            基于 PyTorch Snapshot 数据分析内存问题: Memory Analysis with PyTorch Snapshot Data
+            基于 PyTorch Snapshot 数据分析内存问题案例: Memory Analysis Case with PyTorch Snapshot Data
+            单卡 Top-Down 算子下发瓶颈分析: Single-Card Top-Down Operator Dispatch Bottleneck Analysis
+            verl场景下Snapshot数据采集和分析案例: Snapshot Collection and Analysis Case for verl
+            msMonitor 使用案例: msMonitor Use Cases
+            Monitor 特性介绍: Monitor Feature Introduction
+            mindstudio_monitor模块接口参考: mindstudio_monitor Module API Reference
+            dyno使用说明: Dyno Usage Guide
+            dynolog使用说明: Dynolog Usage Guide
+            npu-monitor使用说明: npu-monitor Usage Guide
+            nputrace使用说明: NPUTrace Usage Guide
+            msAgent安装指南: msAgent Installation Guide
+            msAgent快速入门: msAgent Quick Start
+            msAgent使用指南: msAgent User Guide
+            msAgent 设计文档: msAgent Design Document
+            msprof-mcp 设计文档: msprof-mcp Design Document
+            NPU平台内存快照分析设计文档: NPU Memory Snapshot Analysis Design
+            Minos 文档辅助: Minos Documentation Assistant
+            Accuracy 精度调试: Accuracy Debugging
+            Modeling 仿真建模: Modeling Simulation
+            Operator 算子调优: Operator Tuning
+            Quantizer 模型量化调优: Quantizer Model Quantization Tuning
+            SpecTrainer 投机解码 on-policy 重采样: SpecTrainer Speculative Decoding On-Policy Resampling
+            torch_npu.profiler 接口适配最佳实践: torch_npu.profiler Adaptation Best Practices
+            精度问题——NaN溢出问题最佳实践: NaN Overflow Best Practices
+            精度问题——梯度尖刺（Gradient Spike）最佳实践: Gradient Spike Best Practices
+            模型融合算子识别与替换最佳实践: Fused Operator Identification & Replacement Best Practices
+            模型量化自动调优最佳实践: Automatic Model Quantization Tuning Best Practices
+            算子级 MFU 实测分析最佳实践: Operator-Level MFU Measurement Best Practices
+            Agent YAML Tool/Skills 过滤规则说明: Agent YAML Tool/Skills Filter Rules
+            上下文压缩使用指南: Context Compaction Guide
+            document-ux-review 使用说明: document-ux-review Usage Guide
+            接入 msAgent 调试调优能力: Integrating msAgent Debugging & Tuning
+            "Retry Middleware 使用指南（Deepagents/LangChain）": Retry Middleware Guide (Deepagents/LangChain)
+            添加自定义 Agent: Adding a Custom Agent
+            编译与打包: Build & Packaging
+            ReadTheDocs 本地验证说明: ReadTheDocs Local Verification Guide
+            版本与兼容性: Version & Compatibility
+            Accuracy 使用示例: Accuracy Examples
+            集群场景动态 Profile 性能数据采集与分析指导: Dynamic Profiling Data Collection and Analysis for Cluster Scenarios
+            强化学习场景性能数据采集及分析指导: Profiling Data Collection and Analysis for RL Scenarios
+            Operator MFU 调优指南: Operator MFU Tuning Guide
+            Host Profiling 常用检测工具: Common Host Profiling Tools
   - search
   - glightbox
 
@@ -65,6 +220,10 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      # 默认 slugify 会把中文从标题中剥离（"5.1 参数说明" 只剩 "51"，纯中文标题生成空 id），
+      # 导致上游文档里的中文锚点链接（如 #51-参数说明）全部失效。改用 Unicode slugify 后
+      # 生成的锚点与上游链接写法一致。
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true

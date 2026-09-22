@@ -17,7 +17,8 @@ submodules:
 
 python:
   install:
-    - requirements: readthedocs/requirements.txt
+    # 使用锁定版本，避免依赖小版本升级导致构建产物变化。
+    - requirements: readthedocs/requirements.lock.txt
 
 mkdocs:
   configuration: readthedocs/mkdocs.yml

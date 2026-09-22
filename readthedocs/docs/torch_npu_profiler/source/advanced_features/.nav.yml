@@ -1,8 +1,7 @@
 collapse_single_pages: true
 nav:
   - index.md
-  - mstx.md
-  - memory_timeline.md
-  - child_thread_profiling.md
-  - environment_variables.md
-  - metadata.md
+  - MSTX 用户自定义打点: mstx.md
+  - Profiler 子线程采集: child_thread_profiling.md
+  - 环境变量信息采集: environment_variables.md
+  - 自定义元数据: metadata.md

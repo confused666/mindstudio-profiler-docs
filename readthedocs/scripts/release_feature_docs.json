@@ -1,0 +1,165 @@
+{
+  "$comment": [
+    "whats-new 页面的【新增特性 → 使用说明】映射表，由 fetch_release_notes.py 在生成页面时消费。",
+    "结构：{ 工具slug: [ {match: 特性条目中的关键词(大小写不敏感，命中即采用，更具体的词须排前面), usage: 内嵌用法说明(markdown，支持反引号代码，须摘自官方文档，不得臆造参数), doc: 可选，相对 readthedocs/docs/ 的文档路径, version: 可选，仅对该版本生效} ] }。",
+    "每条特性至多命中一个映射；usage 有值时在条目下渲染「使用：…」嵌套子项；doc 有值时在其后追加「详见文档」链接，渲染前会校验 doc 文件存在，缺失则跳过链接并输出 WARNING。",
+    "未配置映射的特性按原样展示一行说明，不会渲染死链。"
+  ],
+  "msprof": [
+    {
+      "match": "DPU",
+      "usage": "采集后执行 `msprof --export=on --output=<profiler_data目录>` 生成汇总 DB 文件 msprof_{时间戳}.db（含 CCU/UB/SIO 等表，推荐用 MindStudio Insight 查看）；timeline json 层级可用 `--reports=reports_sample_config.json` 中 `ccu`、`ub`、`sio` 等开关控制",
+      "doc": "msprof/source/user_guide/profile_data_file_references.md"
+    },
+    {
+      "match": "NUMA",
+      "usage": "采集时配置 `msprof --host-sys=numa`，生成 metrics.csv 记录各 NUMA 节点时段带宽；绑核优化可参考《最佳实践》中 CPU 线程频繁切换、中断负载不均等案例",
+      "doc": "msprof/source/best_practices/index.md"
+    },
+    {
+      "match": "Fusion Task",
+      "usage": "导出后（`msprof --export=on --output=<profiler_data目录>`）在 msprof_*.json timeline 的 `Fusion Task` 层级查看任务耗时，`task_type` 固定为 FUSION",
+      "doc": "msprof/source/user_guide/profile_data_file_references.md"
+    },
+    {
+      "match": "overlap",
+      "usage": "导出时在 reports_sample_config.json 中开启 `overlap_analyse`，在 msprof_*.json 的 `Overlap Analysis` 层级查看流水掩盖分析（由 `--task-time`/`--hccl` 开关控制采集）",
+      "doc": "msprof/source/user_guide/profile_data_file_references.md"
+    },
+    {
+      "match": "故障模式库",
+      "usage": "在《最佳实践/故障模式库》中按场景（大模型调优实例、小 batch 优化、算子编译耗时等）选择对应案例，按案例步骤对照分析",
+      "doc": "msprof/source/best_practices/index.md"
+    },
+    {
+      "match": "调优案例",
+      "usage": "在《最佳实践/故障模式库》中按场景选择对应案例，按案例步骤对照分析",
+      "doc": "msprof/source/best_practices/index.md"
+    }
+  ],
+  "mspti": [
+    {
+      "match": "CommunicationMonitor",
+      "usage": "`from mspti import CommunicationMonitor, CommunicationData`，创建 `CommunicationMonitor()` 后调用 `monitor.start(on_comm)`，在回调中读取通信算子数据（替换原 `HcclMonitor`）",
+      "doc": "mspti/source/user_guide/python_api.md"
+    },
+    {
+      "match": "msptiActivityIsEnabled",
+      "usage": "调用 C 接口 `bool msptiActivityIsEnabled(msptiActivityKind kind)`，采集前查询指定类型 Activity Kind 的使能状态",
+      "doc": "mspti/source/user_guide/activity_api.md"
+    }
+  ],
+  "msmonitor": [
+    {
+      "match": "rank",
+      "usage": "`nputrace` 采集命令增加 `--rank-list 0,1,2,3`（逗号分隔），只采集目标 rank 的性能数据；未配置时采集所有 rank",
+      "doc": "msmonitor/source/user_guide/nputrace_instruct.md"
+    },
+    {
+      "match": "jsonl",
+      "usage": "采集命令中配置 `--log-file <落盘路径> --export-type Jsonl`，再用 `--json-rotate-log-lines`（单文件条数上限，范围 [100, 500000]，默认 10000）与 `--json-rotate-log-files`（保留文件数，-1 表示不清理）控制落盘体积，优先级高于环境变量 `MSMONITOR_JSONL_ROTATE_LOG_LINES`/`MSMONITOR_JSONL_ROTATE_LOG_FILES`",
+      "doc": "msmonitor/source/user_guide/npumonitor_instruct.md"
+    },
+    {
+      "match": "Monitor API",
+      "usage": "`from msmonitor import Monitor, ActivityKind, DcmiLayer`，`monitor.start(...)` 开启采集、`monitor.stop()` 停止，`save()` 导出 xlsx/json 性能数据（`save_path` 指定输出目录）",
+      "doc": "msmonitor/source/advanced_features/monitor_feature.md"
+    }
+  ],
+  "msprof-analyze": [
+    {
+      "match": "Agent 模式",
+      "usage": "分析命令追加 `--agent`，如 `msprof-analyze cluster -d <profiling_path> --agent`，分析结果以 JSON 格式输出至标准输出",
+      "doc": "msprof-analyze/source/user_guide/cluster_analyse_instruct.md"
+    },
+    {
+      "match": "MFU",
+      "usage": "采集时开启 `with_flops=True` 与 `_ExperimentalConfig` 的 msTX 开关，然后执行 `msprof-analyze -m operator_mfu -d <profiling_path>` 输出 kernel 级/Module 级 MFU",
+      "doc": "msprof-analyze/source/advanced_features/operator_mfu_instruct.md"
+    },
+    {
+      "match": "summary 导出",
+      "usage": "执行 `msprof-analyze cluster -m export_summary -d <cluster_data>` 导出集群 summary，结果保存在 cluster_analysis_output 目录（`-o` 可自定义）",
+      "doc": "msprof-analyze/source/advanced_features/export_summary_instruct.md"
+    },
+    {
+      "match": "slow_link",
+      "usage": "slow_link 为集群分析内置能力（汇总集群异常耗时算子以识别慢卡），结果默认保存在输入路径下的 cluster_analysis_output 目录（`-o` 可自定义）",
+      "doc": "msprof-analyze/source/advanced_features/index.md"
+    },
+    {
+      "match": "集群分析",
+      "usage": "执行 `msprof-analyze cluster -d <profiling_path>`，单卡场景仅需 `analysis.db` 与 `profiler_info.json` 即可完成分析",
+      "doc": "msprof-analyze/source/user_guide/cluster_analyse_instruct.md"
+    },
+    {
+      "match": "NPU/GPU",
+      "usage": "执行 `msprof-analyze cluster -m calibrate_npu_gpu --profiling_path <npu数据> --baseline_profiling_path <gpu数据>`，按 Module 层级对齐比对 NPU/GPU 性能差异",
+      "doc": "msprof-analyze/source/advanced_features/calibrate_npu_gpu_instruct.md"
+    },
+    {
+      "match": "大块空闲",
+      "usage": "执行 `msprof-analyze -m free_analysis -d <cluster_data>`，自动识别 Device 侧大块空闲时间及其产生原因",
+      "doc": "msprof-analyze/source/advanced_features/free_analysis_instruct.md"
+    },
+    {
+      "match": "Recipe",
+      "usage": "集群/Recipe 分析结果支持 `--export_type text` 导出 csv，无需数据库工具即可直接查看；交付件表结构见本文档",
+      "doc": "msprof-analyze/source/advanced_features/recipe_output_format_introduct.md"
+    }
+  ],
+  "msinsight": [
+    {
+      "match": "场景化资料",
+      "usage": "前往《最佳实践》查看算子调优、内存分析、ftrace 分析、容器化部署等场景案例目录",
+      "doc": "msinsight/source/best_practices/index.md"
+    },
+    {
+      "match": "Snapshot",
+      "usage": "按《基于 PyTorch Snapshot 定位训练内存泄漏》案例：训练中记录 Snapshot，对比内存块生命周期图判断是否跨 Step 累积，结合内存池状态区分泄漏与缓存/碎片",
+      "doc": "msinsight/source/best_practices/pytorch_snapshot_memory_leak_optimization.md"
+    },
+    {
+      "match": "内存快照",
+      "usage": "训练中记录 Snapshot / memsnapshot 内存快照，对比内存块生命周期图判断是否跨 Step 累积，结合内存池状态区分泄漏与缓存/碎片",
+      "doc": "msinsight/source/best_practices/pytorch_snapshot_memory_leak_optimization.md"
+    },
+    {
+      "match": "Timeline",
+      "usage": "Timeline 中通过泳道交互定位差异（如置顶比对快慢卡的 Overlap Analysis 泳道），采集时开启 with stack 开关可在 Python 泳道查看代码调用栈",
+      "doc": "msinsight/source/best_practices/Timeline_Common_Lanes_and_Interface.md"
+    },
+    {
+      "match": "ftrace",
+      "usage": "在 MindStudio Insight 中导入含 ftrace 的采集数据，通过 Linux Kernel Trace 泳道进行 Host Bound 分析",
+      "doc": "msinsight/source/best_practices/Host_Bound_Analysis_with_Linux_Kernel_Trace.md"
+    }
+  ],
+  "msagent": [
+    {
+      "match": "SpecTrainer",
+      "usage": "用自然语言下指令，如 `用 path/to/Qwen3-8B 对 path/to/conversations.jsonl 做重采样`，Agent 自动编排预检、归一化、重生成与校验",
+      "doc": "msagent/source/agent_guide/spectrainer.md"
+    },
+    {
+      "match": "Profiler 场景化",
+      "usage": "直接给提示词，如 `请分析 /path/to/cluster_profiling/ 中是否存在快慢卡问题，定位异常 rank，并给出可能原因`",
+      "doc": "msagent/source/agent_guide/profiler.md"
+    },
+    {
+      "match": "ascend-knowledge",
+      "usage": "内置 `ascend-doc-mcp`（昇腾社区文档与开源仓库查询服务，默认启用）支撑 `ascend-knowledge` 子代理；用 `/mcp` 在会话中切换 MCP 启用状态，`tavily-mcp` 需配置 `TAVILY_API_KEY` 后启用",
+      "doc": "msagent/source/user_guide/configuration-and-extension.md"
+    },
+    {
+      "match": "安装器",
+      "usage": "uv 方式：`uv tool install -U --python 3.11 mindstudio-agent`（卸载只能用 `uv tool uninstall`），升级用 `uv tool upgrade mindstudio-agent`；源码方式克隆后 `python3 build.py` 构建",
+      "doc": "msagent/source/install_guide/msagent_install_guide.md"
+    },
+    {
+      "match": "安装",
+      "usage": "uv 方式：`uv tool install -U --python 3.11 mindstudio-agent`（卸载只能用 `uv tool uninstall`），升级用 `uv tool upgrade mindstudio-agent`",
+      "doc": "msagent/source/install_guide/msagent_install_guide.md"
+    }
+  ]
+}

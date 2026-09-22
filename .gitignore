@@ -108,6 +108,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+# 文档侧曾用于构建的独立虚拟环境，不应入库（保留根目录 .venv 即可）。
+.venv-docs/
 env/
 venv/
 ENV/
@@ -149,5 +151,8 @@ readthedocs/docs/msprof/
 readthedocs/docs/mspti/
 readthedocs/docs/msmonitor/
 readthedocs/docs/msprof-analyze/
+readthedocs/docs/whats-new/
+readthedocs/docs/msinsight/
+readthedocs/docs/msagent/
 
 .omx/

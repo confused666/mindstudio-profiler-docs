@@ -96,7 +96,7 @@ prof.stop()
 
 - 建议显式配置 `schedule`，并配合 `prof.step()` 使用，以便采集带step信息的性能数据。请参考 [schedule 说明](schedule_reference.md)。
 - 大集群且使用共享存储时，直接通过 `on_trace_ready` 落盘可能带来额外性能膨胀，应根据场景评估是否改用离线解析。
-- 当训练Step数超过采集范围后，Profiler将默认自动同步解析，该过程会阻塞训练/推理进程。如需调整，可通过设置[tensorboard_trace_handler](#tensorboardtracehandler)的`analyse_flag=False`关闭解析，或设置`async_mode=True`开启异步解析。
+- 当训练Step数超过采集范围后，Profiler将默认自动同步解析，该过程会阻塞训练/推理进程。如需调整，可通过设置[tensorboard_trace_handler](#tensorboard_trace_handler参数)的`analyse_flag=False`关闭解析，或设置`async_mode=True`开启异步解析。
 
 ## 采集配置
 

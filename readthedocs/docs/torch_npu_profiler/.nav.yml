@@ -1,10 +1,16 @@
 title: torch_npu.profiler
 nav:
   - torch_npu.profiler: index.md
-  - source/getting_started/quick_start.md
-  - source/user_guide/profile_api.md
-  - source/user_guide/dynamic_profile.md
-  - source/user_guide/offline_analyse.md
-  - source/advanced_features/mstx.md
-  - source/reference/index.md
-  - source
+  - 快速入门: source/getting_started/quick_start.md
+  - 使用指南:
+      - profile 接口采集: source/user_guide/profile_api.md
+      - 动态采集: source/user_guide/dynamic_profile.md
+      - 离线解析: source/user_guide/offline_analyse.md
+      - 性能数据交付件: source/user_guide/result_files.md
+      - schedule 参考: source/user_guide/schedule_reference.md
+  - 高级特性:
+      - MSTX 用户自定义打点: source/advanced_features/mstx.md
+      - Profiler 子线程采集: source/advanced_features/child_thread_profiling.md
+      - 环境变量信息采集: source/advanced_features/environment_variables.md
+      - 自定义元数据: source/advanced_features/metadata.md
+  - 文档目录: source

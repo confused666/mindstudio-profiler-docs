@@ -267,7 +267,7 @@ for step in steps:
 }
 ```
 
-如果需要进一步查看参数含义，可参考 [profiler_config.json 参考](../../torch_npu_profiler/source/reference/profiler_config_reference.md) 和 [`experimental_config` 参考](../../torch_npu_profiler/source/reference/experimental_config_reference.md)。
+如果需要进一步查看参数含义，可参考 [profiler_config.json 配置文件](../../torch_npu_profiler/source/user_guide/dynamic_profile.md#profiler_configjson-配置文件) 和 [`experimental_config` 参考](../../torch_npu_profiler/source/user_guide/profile_api.md#experimental_config)。
 
 ### 3.2 注意事项
 
@@ -340,7 +340,7 @@ msprof-analyze advisor all -d ./cluster_data -o ./advisor_output
 
 如果只需要一个最小判断路径，可以先看 `cluster_time_summary` 和 `slow_rank` 确定问题集中在哪些 rank，再用 `advisor` 辅助给出下一步优化方向。
 
-`msprof-analyze` 更多说明可参考 [集群性能数据细粒度拆解](../../msprof-analyze/docs/zh/advanced_features/cluster_time_summary_instruct.md) 和 [专家建议](../../msprof-analyze/docs/zh/user_guide/advisor_instruct.md)。
+`msprof-analyze` 更多说明可参考 [集群性能数据细粒度拆解](../../msprof-analyze/source/advanced_features/cluster_time_summary_instruct.md) 和 [专家建议](../../msprof-analyze/source/user_guide/advisor_instruct.md)。
 
 ## 5. MindStudio Insight 可视化
 
@@ -377,7 +377,7 @@ MindStudio Insight 的使用原则建议固定为两步：先导入 `cluster_ana
 >
 > MindStudio Insight 仅支持本地磁盘数据导入。因此，在集群场景下，建议先基于 `cluster_analysis_output` 完成远端汇总分析，再把目标 rank 的 Profiling 数据下载到本地后继续下钻。
 
-MindStudio Insight 的基础导入方法可参考 [基础操作](../../msinsight/source/user_guide/basic_operations.md#导入数据)，系统调优示例可参考 [快速入门（系统调优篇）](../../msinsight/source/user_guide/quick_start/system_tuning_quick_start.md)。
+MindStudio Insight 的基础导入方法可参考 [基础操作](../../msinsight/source/user_guide/basic_operations.md#导入数据)，系统调优可参考 [系统调优指南](../../msinsight/source/user_guide/system_tuning.md)。
 
 ## 6. 参考链接
 
